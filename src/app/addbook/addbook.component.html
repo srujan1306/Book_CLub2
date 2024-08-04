@@ -15,7 +15,15 @@
     @if(title?.touched && title?.hasError('required') ){
     <mat-error>title is <strong>required</strong></mat-error>
     } @if(title?.touched && title?.hasError('minlength') ){
-    <mat-error>Please provide full movie name 😁</mat-error>
+    <mat-error>Please provide Full Name of the Book 😁</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" formControlName="author" placeholder="Author" />
+    @if(author?.touched && author?.hasError('required') ){
+    <mat-error>author is <strong>required</strong></mat-error>
+    } @if(author?.touched && author?.hasError('minlength') ){
+    <mat-error>Please provide Author full name😁</mat-error>
     }
   </mat-form-field>
   <mat-form-field>
@@ -23,7 +31,7 @@
       matInput
       type="text"
       formControlName="category"
-      placeholder="category"
+      placeholder="Category"
     />
     @if(Category?.touched && Category?.hasError('required') ){
     <mat-error>category is <strong>required</strong></mat-error>
@@ -31,16 +39,24 @@
     <mat-error>Please provide full category 😁</mat-error>
     }
   </mat-form-field>
-
-  <br />
-
   <mat-form-field>
+    <mat-label>publication Date</mat-label>
     <input
       matInput
-      type="text"
-      formControlName="summary"
-      placeholder="summary"
+      [matDatepicker]="picker"
+      formControlName="publicationDate"
     />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-  <button mat-raised-button type="submit">{{ "addrecipe" }}</button>
+  <label id="example-radio-group-label">Select your Status</label>
+  <mat-radio-group aria-label="Select category" formControlName="Status">
+    <mat-radio-button value="Have Read">Have Read</mat-radio-button>
+    <mat-radio-button value="Plan to Read">Plan to Read</mat-radio-button>
+    <mat-radio-button value="Currently Reading"
+      >Currently Reading</mat-radio-button
+    >
+  </mat-radio-group>
+  <button mat-raised-button type="submit">{{ "Add Book" }}</button>
 </form>

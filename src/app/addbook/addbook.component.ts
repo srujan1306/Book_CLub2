@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,18 +6,27 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatOption } from '@angular/material/core';
-import { MatFormField, MatError, MatLabel } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import {
+  MatFormField,
+  MatError,
+  MatLabel,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { MatSelect } from '@angular/material/select';
 import { BookService } from '../book.service';
 import { Router } from '@angular/router';
 import { Newbook } from '../newbook.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatOption, provideNativeDateAdapter } from '@angular/material/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Book } from '../app.component';
 
 @Component({
   selector: 'app-addbook',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     FormsModule,
     MatFormField,
@@ -31,12 +39,17 @@ import { Newbook } from '../newbook.service';
     MatOption,
     MatRadioGroup,
     MatRadioButton,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
   ],
   templateUrl: './addbook.component.html',
   styleUrl: './addbook.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddbookComponent {
   bookForm: FormGroup;
+  bookadd!: Array<Book>;
 
   constructor(
     public BookService: BookService,
@@ -75,5 +88,14 @@ export class AddbookComponent {
   }
   get Category() {
     return this.bookForm.get('Category');
+  }
+  get author() {
+    return this.bookForm.get('Author');
+  }
+  get publicationDate() {
+    return this.bookForm.get('publicationDate');
+  }
+  get status() {
+    return this.bookForm.get('Status');
   }
 }
