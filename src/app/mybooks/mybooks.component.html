@@ -1,6 +1,9 @@
 <div class="all-books-container">
   @for(book of filteredBooks; track $index) {
-  <app-book [everybook]="book" [id]="book.id" />
+  <app-book
+    [everybook]="book"
+    (delete_the_book)="deleteBook($event)"
+    [id]="book.id"
+  />
   }
 </div>
-<!-- (delete_the_recipe)="deleterecipe($event)" -->

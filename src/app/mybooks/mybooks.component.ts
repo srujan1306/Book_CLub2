@@ -3,6 +3,7 @@ import { BookComponent } from '../book/book.component';
 import { BookService } from '../book.service';
 import { Router } from 'express';
 import { RouterOutlet } from '@angular/router';
+import { Book } from '../app.component';
 
 @Component({
   selector: 'app-mybooks',
@@ -26,5 +27,10 @@ export class MybooksComponent {
       this.filteredBooks = this.books;
       console.log(this.filteredBooks);
     });
+  }
+  deleteBook(book_to_be_deleted: Book) {
+    this.BookService.delete_the_book(book_to_be_deleted).then(() =>
+      this.loadBooks()
+    );
   }
 }

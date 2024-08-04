@@ -9,6 +9,11 @@ export class BookService {
   getbooks(): Promise<any> {
     return fetch(`${API}/books`).then((res) => res.json());
   }
+  delete_the_book(book_to_be_deleted: any) {
+    return fetch(`${API}/books/${book_to_be_deleted.id}`, {
+      method: 'DELETE',
+    }).then((res) => res.json());
+  }
   addbook(bookadd: Newbook) {
     // this.movieList.push(newMovie);
 

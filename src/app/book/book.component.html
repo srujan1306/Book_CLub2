@@ -20,24 +20,14 @@
           <h1>
             {{ everybook.Title }}
           </h1>
-          <!-- <p class="rating">
-            {{ everybook.status }}
-          </p> -->
         </div>
         <div class="cat_des_info">
           <div class="cat_des">
             <div class="category">
-              <p>
-                {{ everybook.Category }}
-              </p>
+              <p>By : {{ everybook.Author }}</p>
+              <p>Category : {{ everybook.Category }}</p>
+              <p>Published on : {{ everybook.PublicationDate }}</p>
             </div>
-            <!-- <div class="summarydetails">
-              <button mat-icon-button (click)="showDescription()">
-                <mat-icon>{{
-                  show ? "keyboard_arrow_up" : "keyboard_arrow_down"
-                }}</mat-icon>
-              </button>
-            </div> -->
           </div>
           <div class="info">
             <!-- <button
@@ -67,7 +57,11 @@
         <!-- <button class="details" (click)="getrecipebyindex(idx)">details</button> -->
       </div>
 
-      <mat-icon class="delete-button" color="warn">delete</mat-icon>
+      <div class="delete_and_info">
+        <mat-icon class="delete-button" color="warn" (click)="deleteBook()"
+          >delete
+        </mat-icon>
+      </div>
     </mat-card>
   </body>
 </html>

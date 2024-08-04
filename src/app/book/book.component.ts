@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,4 +26,11 @@ import { RouterLink } from '@angular/router';
 })
 export class BookComponent {
   @Input() everybook: any;
+  @Input() id!: number;
+
+  @Output() delete_the_book = new EventEmitter<any>();
+
+  deleteBook() {
+    this.delete_the_book.emit(this.everybook);
+  }
 }
